@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergisticsTP", "EnergisticsTP\EnergisticsTP.csproj", "{3FD5F453-CDAD-490E-B394-467838D04F8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Energistics.Tests", "Energistics.Tests\Energistics.Tests.csproj", "{FC5BD66D-6766-46FA-B5BE-2981ADC425CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FD5F453-CDAD-490E-B394-467838D04F8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD5F453-CDAD-490E-B394-467838D04F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD5F453-CDAD-490E-B394-467838D04F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD5F453-CDAD-490E-B394-467838D04F8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC5BD66D-6766-46FA-B5BE-2981ADC425CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC5BD66D-6766-46FA-B5BE-2981ADC425CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC5BD66D-6766-46FA-B5BE-2981ADC425CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC5BD66D-6766-46FA-B5BE-2981ADC425CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A67464D9-CE90-4CFD-9719-1D2C7CDB5740}
+	EndGlobalSection
+EndGlobal
