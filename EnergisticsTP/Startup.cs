@@ -3,12 +3,20 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Hadoop.Avro;
 using System;
+using System.IO;
+using System.Net.WebSockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace EnergisticsTP
 {
     public class Startup
     {
+        private const int BufferSize = 4096;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -42,7 +50,7 @@ namespace EnergisticsTP
                     {
                         var webSocket = await context.WebSockets.AcceptWebSocketAsync();
 
-                        Console.WriteLine("Something");
+                        await HandleConnections(webSocket);
                     }
                     else
                     {
@@ -55,6 +63,49 @@ namespace EnergisticsTP
                 }
 
             });
+        }
+
+        private async Task HandleConnections(WebSocket webSocket)
+        {
+            // TODO we need to receive the complete package here. Please relook at the System.IO.Pipeline
+
+            var token = new CancellationToken();
+
+            while (webSocket.State == WebSocketState.Open)
+            {
+                var buffer = new ArraySegment<byte>(new byte[BufferSize]);
+
+                var result = await webSocket.ReceiveAsync(buffer, token);
+                
+                if (!result.EndOfMessage || result.CloseStatus.HasValue)
+                    continue;
+                
+                var bytes = buffer.Slice(0, result.Count).ToArray();
+
+                if (result.MessageType == WebSocketMessageType.Binary)
+                {
+                    OnDataReceived(bytes);
+                }
+                else // json encoding
+                {
+                    var message = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+
+                    OnMessageReceived(message);
+                }
+            }
+
+        }
+
+        private void OnMessageReceived(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        private void OnDataReceived(byte[] bytes)
+        {
+
+            //AvroSerializer.Create<MessageHeader>
+            Console.WriteLine(bytes.Length);
         }
     }
 }
