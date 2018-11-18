@@ -49,7 +49,7 @@ namespace EnergisticsTP
                     if (context.WebSockets.IsWebSocketRequest)
                     {
                         var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-
+                        
                         await HandleConnections(webSocket);
                     }
                     else
@@ -68,7 +68,6 @@ namespace EnergisticsTP
         private async Task HandleConnections(WebSocket webSocket)
         {
             // TODO we need to receive the complete package here. Please relook at the System.IO.Pipeline
-
             var token = new CancellationToken();
 
             while (webSocket.State == WebSocketState.Open)
@@ -103,7 +102,6 @@ namespace EnergisticsTP
 
         private void OnDataReceived(byte[] bytes)
         {
-
             //AvroSerializer.Create<MessageHeader>
             Console.WriteLine(bytes.Length);
         }
